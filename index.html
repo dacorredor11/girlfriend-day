@@ -37,41 +37,96 @@
         /* Navigation Styles */
         .nav-menu {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             z-index: 1000;
             display: flex;
-            gap: 10px;
+            gap: 5px;
+            max-width: 95vw;
+            overflow-x: auto;
         }
 
         .nav-btn {
             background: transparent;
             border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--text-light);
             white-space: nowrap;
+            min-width: fit-content;
+            flex-shrink: 0;
         }
 
         .nav-btn.active {
             background: linear-gradient(45deg, var(--rose-gold), #e8b86d);
             color: white;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
         }
 
         .nav-btn:hover:not(.active) {
             background: var(--soft-pink);
             color: var(--text-dark);
+        }
+
+        /* Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            .nav-menu {
+                bottom: 15px;
+                padding: 6px;
+                gap: 3px;
+                max-width: 90vw;
+                border-radius: 20px;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+                border-radius: 15px;
+                font-weight: 600;
+            }
+
+            .nav-btn.active {
+                box-shadow: 0 2px 6px rgba(212, 175, 55, 0.4);
+            }
+
+            /* Ensure content doesn't overlap with nav */
+            .content-page {
+                padding-bottom: 100px;
+            }
+
+            .hero {
+                padding-bottom: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                bottom: 10px;
+                padding: 5px;
+                max-width: 85vw;
+                border-radius: 18px;
+            }
+
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+                min-width: auto;
+            }
+
+            /* Better spacing for very small screens */
+            .content-page {
+                padding-bottom: 90px;
+            }
         }
 
         /* Page Sections */
@@ -104,8 +159,8 @@
         }
 
         .bouquet-container {
-            width: 300px;
-            height: 300px;
+            width: 450px;
+            height: 450px;
             margin-bottom: 2rem;
             opacity: 0;
             animation: fadeInBouquet 2s ease-out 0.5s forwards;
@@ -478,30 +533,9 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .survey-form {
-            margin-top: 2rem;
-        }
-
-        .survey input {
-            width: 100%;
-            padding: 18px 25px;
-            border: 3px solid rgba(212, 175, 55, 0.2);
-            border-radius: 30px;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            outline: none;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.9);
-        }
-
-        .survey input:focus {
-            border-color: var(--rose-gold);
-            box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.1);
-            transform: scale(1.02);
-        }
-
-        .survey-btn {
-            background: linear-gradient(45deg, var(--rose-gold), #e8b86d);
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #25d366, #128c7e);
             color: white;
             padding: 18px 45px;
             border: none;
@@ -510,12 +544,34 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            min-width: 280px;
         }
 
-        .survey-btn:hover {
+        .whatsapp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(45deg, #20c55a, #0f7a6b);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         /* Final Message */
@@ -596,31 +652,19 @@
             }
             
             .bouquet-container {
-                width: 250px;
-                height: 250px;
+                width: 350px;
+                height: 350px;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
-            .nav-menu {
-                bottom: 20px;
-                padding: 8px;
-                flex-wrap: wrap;
-                max-width: 90vw;
-            }
-
-            .nav-btn {
-                padding: 10px 16px;
-                font-size: 0.8rem;
-            }
         }
 
         @media (max-width: 480px) {
             .hero {
-                padding: 2rem 1rem;
+                padding: 2rem 1rem 120px;
             }
             
             .survey-container {
@@ -633,6 +677,10 @@
                 padding: 3rem 1.5rem;
                 border-radius: 20px;
                 margin: 2rem auto;
+            }
+
+            .content-page {
+                padding: 60px 10px 110px;
             }
         }
     </style>
@@ -673,7 +721,18 @@
                 
                 <div class="travels-grid">
                     <div class="travel-card">
-                        <div class="aerial-view cali-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view colombia-aerial"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view cali-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🌴</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>Cali, Colombia</h3>
                             <p>Donde comenzó nuestra historia de amor</p>
@@ -682,7 +741,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view palmira-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view colombia-valle"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view palmira-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🌾</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>Palmira, Colombia</h3>
                             <p>Campos dorados y atardeceres mágicos</p>
@@ -691,7 +761,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view bogota-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view colombia-capital"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view bogota-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🏛️</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>Bogotá, Colombia</h3>
                             <p>Aventuras en la capital de los mil sabores</p>
@@ -700,7 +781,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view sanandres-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view colombia-island"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view sanandres-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🏝️</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>San Andrés, Colombia</h3>
                             <p>Mar de siete colores y amor infinito</p>
@@ -709,7 +801,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view malaga-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view spain-coast"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view malaga-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🏖️</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>Málaga, España</h3>
                             <p>Costa del Sol y corazones enamorados</p>
@@ -718,7 +821,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view madrid-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view spain-aerial"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view madrid-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">👑</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>Madrid, España</h3>
                             <p>La capital que conquistamos juntos</p>
@@ -727,7 +841,18 @@
                     </div>
 
                     <div class="travel-card">
-                        <div class="aerial-view paris-photo"></div>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="aerial-view france-aerial"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="aerial-view paris-photo">
+                                    <div class="photo-overlay">
+                                        <div class="photo-icon">🗼</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="travel-info">
                             <h3>París, Francia</h3>
                             <p>Romance europeo y sueños hechos realidad</p>
@@ -754,33 +879,33 @@
                     </div>
 
                     <div class="adventure-card">
-                        <div class="adventure-icon">🏛️</div>
-                        <h3>Islas Griegas</h3>
-                        <p>🌊 Santorini y sus atardeceres infinitos, aguas cristalinas de Mykonos y la magia de las Cícladas</p>
+                        <div class="adventure-icon">🏮</div>
+                        <h3>China</h3>
+                        <p>🐉 La Gran Muralla bajo la luna llena, jardines imperiales y té aromático en las montañas de Guilin</p>
                     </div>
 
                     <div class="adventure-card">
-                        <div class="adventure-icon">🗻</div>
-                        <h3>Suiza</h3>
-                        <p>❄️ Chocolate caliente en los Alpes, trenes panorámicos y lagos de ensueño bajo las montañas nevadas</p>
+                        <div class="adventure-icon">🏔️</div>
+                        <h3>Islandia</h3>
+                        <p>❄️ Auroras boreales bailando sobre nosotros, géiseres mágicos y aguas termales bajo las estrellas</p>
+                    </div>
+
+                    <div class="adventure-card">
+                        <div class="adventure-icon">🦋</div>
+                        <h3>Brasil</h3>
+                        <p>🌺 Samba en Río, cataratas del Iguazú y playas doradas de Copacabana al ritmo de nuestros corazones</p>
                     </div>
 
                     <div class="adventure-card">
                         <div class="adventure-icon">🌺</div>
                         <h3>Hawái</h3>
-                        <p>🏄‍♀️ Surf al amanecer, cócteles tropicales y playas de arena negra bajo las palmeras</p>
+                        <p>🏄‍♀️ Surf al amanecer, cócteles tropicales y playas de arena negra bajo las palmeras del paraíso</p>
                     </div>
 
                     <div class="adventure-card">
-                        <div class="adventure-icon">🦘</div>
-                        <h3>Australia</h3>
-                        <p>🐨 Koalas adorables, la Gran Barrera de Coral y aventuras sin límites en el outback</p>
-                    </div>
-
-                    <div class="adventure-card">
-                        <div class="adventure-icon">🏔️</div>
-                        <h3>Nueva Zelanda</h3>
-                        <p>🧙‍♂️ Paisajes de película, fiordos mágicos y la aventura de nuestras vidas en la Tierra Media</p>
+                        <div class="adventure-icon">🍝</div>
+                        <h3>Italia</h3>
+                        <p>🍷 Pasta casera en la Toscana, góndolas en Venecia y atardeceres dorados en la Costa Amalfitana</p>
                     </div>
                 </div>
             </div>
@@ -791,17 +916,29 @@
     <div id="surprise" class="page">
         <div class="content-page">
             <div class="page-container">
-                <h1 class="page-title">¿Cuándo estarás disponible esta semana? 👀</h1>
-                <p class="page-subtitle">Necesito saber en qué momento estás libre para recibir una sorpresita dulce... 😋💕</p>
+                <h1 class="page-title">¿Cuándo estarás disponible hoy? 👀</h1>
+                <p class="page-subtitle">Necesito coordinar contigo para una sorpresa dulce... 🍫🖤</p>
                 
                 <div class="survey-container">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-light); font-style: italic;">
-                        Misiones dulces en camino... 🕵️‍♂️✨
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-light); font-style: italic; line-height: 1.6;">
+                        🕵️‍♂️ <strong>Misión secreta activada...</strong> ✨<br>
+                        Tengo una sorpresa dulce preparada para ti hoy.
                     </p>
-                    <form class="survey-form" id="surpriseForm">
-                        <input type="text" placeholder="Día y hora en que estaré disponible..." required>
-                        <button type="submit" class="survey-btn">Listo, amorcito 💌</button>
-                    </form>
+                    
+                    <p style="font-size: 1rem; margin-bottom: 2rem; color: var(--text-dark); line-height: 1.6;">
+                        Solo necesito saber a qué hora estarás libre para recibirla 🍫🖤
+                    </p>
+                    
+                    <a href="https://wa.me/573185629774?text=Hola amor! 💕 Estaré disponible a las:" 
+                       class="whatsapp-btn" 
+                       target="_blank">
+                        <span class="whatsapp-icon">📱</span>
+                        Escribirme por WhatsApp 💌
+                    </a>
+                    
+                    <p style="font-size: 0.9rem; margin-top: 1.5rem; color: var(--text-light); font-style: italic;">
+                        (Te llevará directo a nuestro chat con el mensaje ya preparado)
+                    </p>
                 </div>
 
                 <div class="final-message">
@@ -863,46 +1000,29 @@
             }
         }, 2000);
 
-        // Form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('surpriseForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const input = this.querySelector('input');
-                    const response = input.value.trim();
-                    
-                    if (response) {
-                        // Store response (placeholder for actual backend)
-                        console.log('Respuesta guardada:', response);
-                        
-                        // Show success message
-                        const button = this.querySelector('button');
-                        const originalText = button.innerHTML;
-                        button.innerHTML = '¡Perfecto! 💕';
-                        button.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
-                        button.disabled = true;
-                        
-                        setTimeout(() => {
-                            button.innerHTML = originalText;
-                            button.style.background = 'linear-gradient(45deg, var(--rose-gold), #e8b86d)';
-                            button.disabled = false;
-                            input.value = '';
-                        }, 3000);
-                    }
-                });
-            }
-        });
+        // Form submission - No longer needed, kept for reference
+        // WhatsApp link handles the communication now
 
         // Add interactive effects to travel cards
         document.addEventListener('DOMContentLoaded', function() {
             const travelCards = document.querySelectorAll('.travel-card');
             travelCards.forEach(card => {
+                // For mobile touch support
                 card.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
+                    this.classList.toggle('touch-active');
+                    // Remove the class after animation completes to allow re-flipping
                     setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
+                        this.classList.remove('touch-active');
+                    }, 3000);
+                });
+
+                // For desktop hover enhancement
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
                 });
             });
 
